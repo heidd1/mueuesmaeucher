@@ -1,12 +1,74 @@
-<style>
-body{margin:0;font-family:"Inter", sans-serif;background:#f3f1ec;color:#2f2f2f}
-header{background:#7a8f5a;color:#fff;text-align:center;padding:30px 0}
-header img{max-height:120px;margin-bottom:10px}
-nav a{color:#fff;text-decoration:none;margin:0 12px;font-weight:bold}
-nav a:hover{text-decoration:underline}
-.container{max-width:1000px;margin:auto;padding:30px;background:#fff}
-h2{color:#7a8f5a}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
-.gallery img{width:100%;border-radius:6px}
-footer{background:#7a8f5a;color:#fff;text-align:center;padding:15px 0;font-size:14px}
-</style>
+/* ===== Global ===== */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald", sans-serif;
+    background: #f3f1ec;
+    color: #2f2f2f;
+}
+
+/* ===== Header ===== */
+header {
+    background: #7a8f5a;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+}
+
+header img {
+    max-height: 120px;
+    margin-bottom: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Layout ===== */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    background: #fff;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+h2 {
+    color: #7a8f5a;
+}
+
+/* ===== Galerie ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===== Footer ===== */
+footer {
+    background: #7a8f5a;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
