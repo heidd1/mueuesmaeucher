@@ -41,8 +41,8 @@
 <p>Einige Eindrücke unserer Anlässe. Wähle einen Anlass, um alle Bilder zu sehen.</p>
 <div class="tabs">
 <button class="active" onclick="openTab(0)">Weihnachtsmarkt 2025</button>
-<button onclick="openTab(1)">Anlass 2</button>
-<button onclick="openTab(2)">Anlass 3</button>
+<!--<button onclick="openTab(1)">Anlass 2</button>
+<button onclick="openTab(2)">Anlass 3</button>-->
 </div>
 <div class="tab-content active">
 <div class="gallery">
@@ -90,7 +90,7 @@
 <img src="bilder/Weihnachtsmarkt(42).jpg" onclick="openLightbox(1, this)">
 </div>
 </div>
-<div class="tab-content">
+<!--<div class="tab-content">
 <div class="gallery">
 <img src="bilder/anlass2_1.jpg" onclick="openLightbox(1, this)">
 <img src="bilder/anlass2_2.jpg" onclick="openLightbox(1, this)">
@@ -101,7 +101,7 @@
 <img src="bilder/anlass3_1.jpg" onclick="openLightbox(1, this)">
 <img src="bilder/anlass3_2.jpg" onclick="openLightbox(1, this)">
 </div>
-</div>
+</div>-->
 </main>
 <div class="lightbox" id="lightbox">
 <span class="nav prev" onclick="changeImg(-1)">&#10094;</span>
@@ -123,4 +123,5 @@ document.getElementById('lightbox-img').src=images[currentTab][currentIndex]}
 document.getElementById('lightbox').onclick=e=>{if(e.target.id==='lightbox')e.target.style.display='none'}
 </script>
 </body>
+
 </html>
