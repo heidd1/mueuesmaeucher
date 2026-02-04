@@ -11,15 +11,14 @@ html, body {
 }
 
 header {
-    background: #7a8f5a;
+    background: #775420;
     color: #fff;
     text-align: center;
     padding: 30px 0;
 }
 
 header img {
-    max-height: 120px;
-    margin-bottom: 10px;
+    max-height: 140px;
 }
 
 nav a {
@@ -45,7 +44,7 @@ h1, h2, h3 {
 }
 
 h2 {
-    color: #7a8f5a;
+    color: #775420;
 }
 
 .gallery {
@@ -61,7 +60,7 @@ h2 {
 }
 
 footer {
-    background: #7a8f5a;
+    background: #775420;
     color: #fff;
     text-align: center;
     padding: 15px 0;
