@@ -15,7 +15,7 @@
 			content="Website Müüsmäucher - Aktuelles">
 			<meta
 			property="og:url"
-			content="https://mueuesmaeucher.ch/aktuelles">
+			content="https://mueuesmaeucher.ch/aktuelles.html">
 		<meta
 			property="og:site_name"
 			content="mueuesmaeucher.ch">
@@ -54,18 +54,18 @@
 	</head>
 	<body>
 		<header>
-			<a href="index">
+			<a href="index.html">
 				<img 
 				src="logo.png" 
 				alt="Logo Müüsmäucher Winznau">
 			</a>
 			<h1>Müüsmäucher Winznau</h1>
 			<nav>
-				<a href="index">Startseite</a>
-				<a href="ueber-uns">Über uns</a>
-				<a href="aktuelles">Aktuelles</a>
-				<a href="galerie">Galerie</a>
-				<a href="kontakt">Kontakt</a>
+				<a href="index.html">Startseite</a>
+				<a href="ueber-uns.html">Über uns</a>
+				<a href="aktuelles.html">Aktuelles</a>
+				<a href="galerie.html">Galerie</a>
+				<a href="kontakt.html">Kontakt</a>
 			</nav>
 		</header>
 		<main class="container">
