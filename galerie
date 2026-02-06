@@ -1,0 +1,167 @@
+<!-- ===================== galerie.html ===================== -->
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<meta 
+			name="viewport" 
+			content="width=device-width, initial-scale=1.0">
+		<title>Müüsmäucher Winznau – Galerie</title>
+		<meta 
+			name="description" 
+			content="Website des Verein Müüsmäucher Winznau. Gegründet im Jahr 2019. Wir machen zusammen Ausflüge und organisieren gesellige Anlässe für das Dorf und seine Einwohner*innen">
+		<meta
+			property="og:title"
+			content="Website Müüsmäucher - Galerie">
+			<meta
+			property="og:url"
+			content="https://mueuesmaeucher.ch/galerie">
+		<meta
+			property="og:site_name"
+			content="mueuesmaeucher.ch">
+		<meta
+			property="og:description"
+			content="Website des Verein Müüsmäucher Winznau. Gegründet im Jahr 2019. Wir machen zusammen Ausflüge und organisieren gesellige Anlässe für das Dorf und seine Einwohner*innen">
+		<meta 
+			property="og:type"
+			content="website">
+		<meta 
+			property="og:image" 
+			content="https://mueuesmaeucher.ch/social_media.png">
+		<meta 
+			property="og:image:width" 
+			content="1200">
+		<meta 
+			property="og:image:height" 
+			content="630">
+		<link 
+			rel="canonical" 
+			href="https://mueuesmaeucher.ch/">
+		<link 
+			rel="preconnect" 
+			href="https://fonts.googleapis.com">
+		<link 
+			rel="preconnect" 
+			href="https://fonts.gstatic.com" crossorigin>
+		<link 
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" 
+			rel="stylesheet">
+		<link 
+			rel="stylesheet" 
+			href="style.css">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="alternate icon" href="/favicon.png"> <!-- Fallback -->
+		<style>
+			.tabs button{padding:10px 15px;border:none;background:#e0e0e0;margin-right:5px;cursor:pointer;font-weight:bold}
+			.tabs button.active{background:#775420;color:#fff}
+			.tab-content{display:none;margin-top:20px}
+			.tab-content.active{display:block}
+			.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center}
+			.lightbox img{max-width:90%;max-height:90%}
+			.lightbox .nav{position:absolute;top:50%;color:#fff;font-size:40px;cursor:pointer;padding:20px}
+			.lightbox .prev{left:0}
+			.lightbox .next{right:0}
+		</style>
+	</head>
+	<body>
+		<header>
+			<a href="index"><img src="logo.png" alt="Logo Müüsmäucher Winznau"></a>
+			<h1>Müüsmäucher Winznau</h1>
+			<nav>
+				<a href="index">Startseite</a>
+				<a href="ueber-uns">Über uns</a>
+				<a href="aktuelles">Aktuelles</a>
+				<a href="galerie">Galerie</a>
+				<a href="kontakt">Kontakt</a>
+			</nav>
+		</header>
+		<main class="container">
+			<h2>Galerie</h2>
+			<p>Einige Eindrücke unserer Anlässe. Wähle einen Anlass, um alle Bilder zu sehen.</p>
+			<div class="tabs">
+				<button class="active" onclick="openTab(0)">Weihnachtsmarkt 2025</button>
+				<!--<button onclick="openTab(1)">Anlass 2</button>
+				<button onclick="openTab(2)">Anlass 3</button>-->
+			</div>
+			<div class="tab-content active">
+				<div class="gallery">
+					<img src="bilder/Weihnachtsmarkt (1).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (2).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (3).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (4).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (5).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (6).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (7).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (8).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (9).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (10).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (11).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (12).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (13).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (14).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (16).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (17).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (18).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (19).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (20).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (21).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (22).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (24).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (26).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (27).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (28).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (29).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (30).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (31).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (32).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (33).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (34).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (35).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (36).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (37).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (38).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (39).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (40).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (41).jpg" onclick="openLightbox(0, this)">
+					<img src="bilder/Weihnachtsmarkt (42).jpg" onclick="openLightbox(0, this)">
+				</div>
+			</div>
+			<!--<div class="tab-content">
+			<div class="gallery">
+			<img src="bilder/anlass2_1.jpg" onclick="openLightbox(1, this)">
+			<img src="bilder/anlass2_2.jpg" onclick="openLightbox(1, this)">
+			</div>
+			</div>
+			<div class="tab-content">
+			<div class="gallery">
+			<img src="bilder/anlass3_1.jpg" onclick="openLightbox(1, this)">
+			<img src="bilder/anlass3_2.jpg" onclick="openLightbox(1, this)">
+			</div>
+			</div>-->
+		</main>
+		<div class="lightbox" id="lightbox">
+			<span class="nav prev" onclick="changeImg(-1)">&#10094;</span>
+			<img id="lightbox-img">
+			<span class="nav next" onclick="changeImg(1)">&#10095;</span>
+		</div>
+		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
+		<script>
+		let currentTab=0,currentIndex=0;const images=[];
+		document.querySelectorAll('.tab-content').forEach((tab,i)=>{
+		images[i]=[...tab.querySelectorAll('img')].map(img=>img.src);
+		});
+		function openTab(i){document.querySelectorAll('.tabs button').forEach((b,bi)=>b.classList.toggle('active',bi===i));
+		document.querySelectorAll('.tab-content').forEach((t,ti)=>t.classList.toggle('active',ti===i));currentTab=i}
+		function openLightbox(tab,img){currentTab=tab;currentIndex=images[tab].indexOf(img.src);
+		document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox').style.display='flex'}
+		function changeImg(step){currentIndex=(currentIndex+step+images[currentTab].length)%images[currentTab].length;
+		document.getElementById('lightbox-img').src=images[currentTab][currentIndex]}
+		document.getElementById('lightbox').onclick=e=>{if(e.target.id==='lightbox')e.target.style.display='none'}
+		</script>
+	</body>
+
+</html>
+
+
+
+
