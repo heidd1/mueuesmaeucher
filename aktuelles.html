@@ -70,21 +70,38 @@
 		</header>
 		<main class="container">
 			<h2>Aktuelles</h2>
-			<h3>Anmeldung Weihnachtsmarkt</h3>
-			<iframe 
-				width="640px" 
-				height="480px" 
-				src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAa__dJG7HlUNEgzTDZHNlozNlhBVEJPRkxSMU9IODhRSi4u&embed=true" 
-				frameborder="0" 
-				marginwidth="0" 
-				marginheight="0" 
-				style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
-			<h3>Weiteres</h3>
-			<p>Das sind unsere nächsten Anlässe</p>
-			<ul>
-				<li>Festwirtschaft am Feldschiessen in Winznau vom 29. bis am 31. Mai 2026</li>
-				<li>Dorf Mäuchete am 31. Juli und 01. August 2026</li>
-			</ul>
+			<div class="tabs">
+				<button class="active" onclick="openTab(0)">Dorf Mäuchete 2026</button>
+				<button onclick="openTab(1)">Weihnachtsmarkt 2026</button>
+			</div>
+			<div class="tab-content active">
+				<h3>Dorf Mäuchete 2026</h3>
+				<p>Details über das Dorf Mäuchete 2026...</p>
+				<h3>Anmeldung</h3>
+				<iframe
+					src="https://docs.google.com/forms/d/e/1FAIpQLSdmeojtxg1zIkMJHXEFmoWBjYoGPnmVCHMo7GKazeK19RjdJw/viewform?embedded=true"
+					width="640"
+					height="1275"
+					frameborder="0"
+					marginheight="0"
+					marginwidth="0"
+					style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
+				</iframe>
+			</div>
+			<div class="tab-content">
+				<h3>Weihnachtsmarkt 2026</h3>
+				<p>Details über den Weihnachtsmarkt 2026...</p>
+				<h3>Anmeldung</h3>
+				<iframe 
+					width="640px" 
+					height="480px" 
+					src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAa__dJG7HlUNEgzTDZHNlozNlhBVEJPRkxSMU9IODhRSi4u&embed=true" 
+					frameborder="0" 
+					marginwidth="0" 
+					marginheight="0" 
+					style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
+				</iframe>
+			</div>
 		</main>
 		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
 	</body>
