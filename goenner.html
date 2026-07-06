@@ -67,12 +67,23 @@
         <main class="container">
             <h2>Gönnerwesen</h2>
             <section>
-                <h3>Überschrift</h3>
-                <p>Hier kannst du den Text für das Gönnerwesen einfügen.</p>
+                <h3>Werde jetzt Gönnerin oder Gönner der Müüsmäucher Winznau</h3>
+                <p>Seit neustem können sich alle Interessierten als Gönnerin oder Gönner des Vereins anmelden. Als Gönnerin oder Gönner unterstützt du unseren Verein und hilfst uns, unsere Feste und Aktivitäten durchzuführen. Als Dank wirst du zu unserem Gönnerapéro am Weihnachtsmarkt eingeladen.</p>
             </section>
             <section>
-                <h3>Weitere Informationen</h3>
-                <p>Ersetze diesen Abschnitt einfach durch deinen Inhalt.</p>
+                <h3>Melde dich jetzt als Gönner oder Gönnerin an</h3>
+                <div id="rnw-paylink-button-kfpgs"></div>
+                <script type="module">
+                    import { TwintButton } from "https://unpkg.com/@raisenow/paylink-button@2/dist/TwintButton.js";
+                    TwintButton.render("#rnw-paylink-button-kfpgs", {
+                        "solution-id": "kfpgs",
+                        "solution-type": "donate",
+                        "language": "de",
+                        "size": "large",
+                        "width": "fixed",
+                        "color-scheme": "dark"
+                    });
+                </script>
             </section>
         </main>
         <footer>&copy; 2026 Müüsmäucher Winznau</footer>
