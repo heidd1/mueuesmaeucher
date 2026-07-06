@@ -124,3 +124,9 @@ footer {
 .lightbox .next {
     right: 0;
 }
+
+.hero-video {
+    display: block;
+    margin: 0 auto;
+    max-width: 90%;
+}
