@@ -106,5 +106,19 @@
 			</div>
 		</main>
 		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
+        <script>
+            function openTab(index) {
+                const buttons = document.querySelectorAll('.tabs button');
+                const contents = document.querySelectorAll('.tab-content');
+
+                buttons.forEach((button, i) => {
+                    button.classList.toggle('active', i === index);
+                });
+
+                contents.forEach((content, i) => {
+                    content.classList.toggle('active', i === index);
+                });
+            }
+        </script>
 	</body>
 </html>
