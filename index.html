@@ -72,12 +72,39 @@
 		<main class="container">
 			<h2>Willkommen</h2>
 			<p>Herzlich willkommen beim Verein <strong>Müüsmäucher Winznau</strong>. Wir stehen für Gemeinschaft, Tradition und Geselligkeit in Winznau.</p>
-			<video class="hero-video" autoplay muted playsinline controls preload="metadata">
-                  <source src="Feldschiessen.mp4" type="video/mp4">
-                Dein Browser unterstützt das Video-Tag nicht.
-            </video>
+			<div class="gallery hero-gallery">
+				<img src="bilder/Seite1.png" alt="Seite 1" onclick="openLightbox(this)">
+				<img src="bilder/Seite2.png" alt="Seite 2" onclick="openLightbox(this)">
+				<img src="bilder/Seite4.png" alt="Seite 3" onclick="openLightbox(this)">
+			</div>
+			<div class="lightbox" id="lightbox">
+				<span class="nav prev" onclick="changeImg(-1)">&#10094;</span>
+				<img id="lightbox-img" alt="Vergrößerte Ansicht">
+				<span class="nav next" onclick="changeImg(1)">&#10095;</span>
+			</div>
 		</main>
 		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
+		<script>
+			const heroImages = [...document.querySelectorAll('.hero-gallery img')].map(img => img.src);
+			let heroIndex = 0;
+
+			function openLightbox(img) {
+				heroIndex = heroImages.indexOf(img.src);
+				document.getElementById('lightbox-img').src = img.src;
+				document.getElementById('lightbox').style.display = 'flex';
+			}
+
+			function changeImg(step) {
+				heroIndex = (heroIndex + step + heroImages.length) % heroImages.length;
+				document.getElementById('lightbox-img').src = heroImages[heroIndex];
+			}
+
+			document.getElementById('lightbox').onclick = function(e) {
+				if (e.target.id === 'lightbox') {
+					e.target.style.display = 'none';
+				}
+			};
+		</script>
 	</body>
 </html>
 
