@@ -72,10 +72,12 @@
 		<main class="container">
 			<h2>Willkommen</h2>
 			<p>Herzlich willkommen beim Verein <strong>Müüsmäucher Winznau</strong>. Wir stehen für Gemeinschaft, Tradition und Geselligkeit in Winznau.</p>
-			<div class="gallery hero-gallery">
+			<div class="gallery">
 				<img src="bilder/Seite1.png" alt="Seite 1" onclick="openLightbox(this)">
 				<img src="bilder/Seite2.png" alt="Seite 2" onclick="openLightbox(this)">
 				<img src="bilder/Seite4.png" alt="Seite 3" onclick="openLightbox(this)">
+				<img src="bilder/Girouds.jpeg" alt="Girouds" onclick="openLightbox(this)">
+				<img src="bilder/Risotto.jpeg" alt="Risotto" onclick="openLightbox(this)">
 			</div>
 			<div class="lightbox" id="lightbox">
 				<span class="nav prev" onclick="changeImg(-1)">&#10094;</span>
@@ -85,18 +87,18 @@
 		</main>
 		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
 		<script>
-			const heroImages = [...document.querySelectorAll('.hero-gallery img')].map(img => img.src);
-			let heroIndex = 0;
+			const galleryImages = [...document.querySelectorAll('.gallery img')].map(img => img.src);
+			let galleryIndex = 0;
 
 			function openLightbox(img) {
-				heroIndex = heroImages.indexOf(img.src);
+				galleryIndex = galleryImages.indexOf(img.src);
 				document.getElementById('lightbox-img').src = img.src;
 				document.getElementById('lightbox').style.display = 'flex';
 			}
 
 			function changeImg(step) {
-				heroIndex = (heroIndex + step + heroImages.length) % heroImages.length;
-				document.getElementById('lightbox-img').src = heroImages[heroIndex];
+				galleryIndex = (galleryIndex + step + galleryImages.length) % galleryImages.length;
+				document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
 			}
 
 			document.getElementById('lightbox').onclick = function(e) {

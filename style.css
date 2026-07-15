@@ -57,20 +57,12 @@ h2 {
     width: 100%;
     border-radius: 6px;
     cursor: pointer;
-}
-
-.hero-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-}
-
-.hero-gallery img {
     aspect-ratio: 4 / 3;
     object-fit: cover;
     transition: transform 0.2s ease;
 }
 
-.hero-gallery img:hover {
+.gallery img:hover {
     transform: scale(1.02);
 }
 
