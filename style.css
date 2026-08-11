@@ -88,13 +88,33 @@ footer {
     color: #fff;
 }
 
-.tab-content {
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.year-content,
+.event-content {
     display: none;
     margin-top: 20px;
 }
 
-.tab-content.active {
+.year-content.active,
+.event-content.active {
     display: block;
+}
+
+.hero-video {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 6px;
+}
+
+.video-container {
+    text-align: center;
 }
 
 .lightbox {
