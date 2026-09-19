@@ -49,16 +49,18 @@ h2 {
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    align-items: stretch;
 }
 
 .gallery img {
     width: 100%;
+    height: min(75vh, 760px);
     border-radius: 6px;
     cursor: pointer;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    object-fit: contain;
+    background: #f3f1ec;
     transition: transform 0.2s ease;
 }
 
