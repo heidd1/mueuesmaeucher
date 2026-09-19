@@ -168,7 +168,7 @@
 		});
 
 		function openYearTab(yearIndex) {
-			document.querySelectorAll('.years button').forEach((button, bi) => button.classList.toggle('active', bi === yearIndex));
+			document.querySelectorAll('.years button').forEach(button => button.classList.toggle('active', button.getAttribute('onclick') === `openYearTab(${yearIndex})`));
 			document.querySelectorAll('.year-content').forEach((year, yi) => year.classList.toggle('active', yi === yearIndex));
 			currentYear = yearIndex;
 			openEventTab(yearIndex, 0);
