@@ -63,17 +63,17 @@ h2 {
 }
 
 .homepage-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
     gap: 20px;
     align-items: stretch;
 }
 
 .homepage-gallery img {
     width: 100%;
-    height: min(75vh, 760px);
-    aspect-ratio: auto;
-    object-fit: contain;
+    height: clamp(360px, 60vh, 760px);
+    object-fit: cover;
     background: #f3f1ec;
+    border-radius: 6px;
 }
 
 .gallery img:hover {
