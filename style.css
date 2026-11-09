@@ -63,17 +63,32 @@ h2 {
 }
 
 .homepage-gallery {
-    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
     gap: 20px;
     align-items: stretch;
 }
 
 .homepage-gallery img {
     width: 100%;
-    height: clamp(360px, 60vh, 760px);
+    height: auto;
+    aspect-ratio: 3 / 4.2;
     object-fit: cover;
     background: #f3f1ec;
     border-radius: 6px;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .homepage-gallery {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .homepage-gallery {
+        grid-template-columns: 1fr;
+    }
 }
 
 .gallery img:hover {
@@ -145,8 +160,12 @@ footer {
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .lightbox .nav {
