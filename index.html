@@ -73,39 +73,19 @@
 			<h2>Willkommen</h2>
 			<p>Herzlich willkommen beim Verein <strong>Müüsmäucher Winznau</strong>. Wir stehen für Gemeinschaft, Tradition und Geselligkeit in Winznau.</p>
 			<div class="gallery homepage-gallery">
-				<img src="bilder/Seite_1.png" alt="Seite 1" onclick="openLightbox(this)">
-				<img src="bilder/Seite_2.png" alt="Seite 2" onclick="openLightbox(this)">
-				<img src="bilder/Seite_3.png" alt="Seite 3" onclick="openLightbox(this)">
-				<img src="bilder/Seite_4.png" alt="Seite 4" onclick="openLightbox(this)">
+				<img src="bilder/Seite_1.png" alt="Seite 1">
+				<img src="bilder/Seite_2.png" alt="Seite 2">
+				<img src="bilder/Seite_3.png" alt="Seite 3">
+				<img src="bilder/Seite_4.png" alt="Seite 4">
 			</div>
 			<div class="lightbox" id="lightbox">
-				<span class="nav prev" onclick="changeImg(-1)">&#10094;</span>
+				<span class="nav prev">&#10094;</span>
 				<img id="lightbox-img" alt="Vergrößerte Ansicht">
-				<span class="nav next" onclick="changeImg(1)">&#10095;</span>
+				<span class="nav next">&#10095;</span>
 			</div>
 		</main>
 		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
-		<script>
-			const galleryImages = [...document.querySelectorAll('.gallery img')].map(img => img.src);
-			let galleryIndex = 0;
-
-			function openLightbox(img) {
-				galleryIndex = galleryImages.indexOf(img.src);
-				document.getElementById('lightbox-img').src = img.src;
-				document.getElementById('lightbox').style.display = 'flex';
-			}
-
-			function changeImg(step) {
-				galleryIndex = (galleryIndex + step + galleryImages.length) % galleryImages.length;
-				document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
-			}
-
-			document.getElementById('lightbox').onclick = function(e) {
-				if (e.target.id === 'lightbox') {
-					e.target.style.display = 'none';
-				}
-			};
-		</script>
+		<script src="script.js"></script>
 	</body>
 </html>
 
