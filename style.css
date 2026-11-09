@@ -10,6 +10,58 @@ html, body {
     color: #2f2f2f;
 }
 
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.snow-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.flake {
+    position: absolute;
+    top: -15%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255,255,255,0.8);
+    animation: snowfall linear infinite;
+    opacity: 0;
+}
+
+.f1 { left: 5%; animation-duration: 16s; animation-delay: 0s; }
+.f2 { left: 12%; animation-duration: 19s; animation-delay: 3s; }
+.f3 { left: 22%; animation-duration: 18s; animation-delay: 1s; }
+.f4 { left: 31%; animation-duration: 21s; animation-delay: 4s; }
+.f5 { left: 42%; animation-duration: 17s; animation-delay: 2s; }
+.f6 { left: 53%; animation-duration: 20s; animation-delay: 5s; }
+.f7 { left: 64%; animation-duration: 18s; animation-delay: 1.5s; }
+.f8 { left: 72%; animation-duration: 22s; animation-delay: 3.5s; }
+.f9 { left: 81%; animation-duration: 16s; animation-delay: 2.5s; }
+.f10 { left: 90%; animation-duration: 21s; animation-delay: 5.5s; }
+.f11 { left: 61%; animation-duration: 15s; animation-delay: 0.5s; }
+.f12 { left: 48%; animation-duration: 19s; animation-delay: 6s; }
+
+@keyframes snowfall {
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(20px, 110vh, 0) scale(1.2);
+        opacity: 0;
+    }
+}
+
 header {
     background: #775420;
     color: #fff;
@@ -33,10 +85,20 @@ nav a:hover {
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     max-width: 1000px;
     margin: auto;
     padding: 30px;
     background: #fff;
+}
+
+header,
+footer,
+nav,
+main {
+    position: relative;
+    z-index: 1;
 }
 
 h1, h2, h3 {
