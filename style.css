@@ -39,6 +39,29 @@ body::before {
     }
 }
 
+/* Schnee aus: per Schalter, oder per Systemeinstellung "Bewegung reduzieren",
+   solange man ihn nicht ausdrücklich eingeschaltet hat (.snow-on). */
+html.no-snow body::before {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(.snow-on) body::before {
+        display: none;
+    }
+}
+
+/* Sichtbarer Fokus für Tastatur-Nutzer (erscheint nicht bei Mausklicks) */
+:focus-visible {
+    outline: 3px solid #775420;
+    outline-offset: 2px;
+}
+
+header :focus-visible,
+.lightbox :focus-visible {
+    outline-color: #fff;
+}
+
 header {
     background: #775420;
     color: #fff;
@@ -48,6 +71,41 @@ header {
 
 header img {
     max-height: 140px;
+}
+
+.snow-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.snow-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.snow-toggle[aria-pressed="false"] {
+    opacity: 0.5;
+}
+
+.snow-toggle svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 nav {
@@ -175,8 +233,13 @@ footer {
     margin-top: 20px;
 }
 
+.tab-content {
+    display: none;
+}
+
 .year-content.active,
-.event-content.active {
+.event-content.active,
+.tab-content.active {
     display: block;
 }
 
@@ -204,6 +267,18 @@ footer {
     z-index: 1000;
 }
 
+.lightbox.open {
+    display: flex;
+}
+
+.lightbox button {
+    background: none;
+    border: none;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
 .lightbox img {
     max-width: 90vw;
     max-height: 85vh;
@@ -216,10 +291,40 @@ footer {
 .lightbox .nav {
     position: absolute;
     top: 50%;
-    color: #fff;
+    transform: translateY(-50%);
     font-size: 40px;
-    cursor: pointer;
     padding: 20px;
+}
+
+.lightbox .lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 44px;
+    line-height: 1;
+    padding: 8px 14px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-links a {
+    display: inline-flex;
+    padding: 4px;
+    color: #775420;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: #4f3814;
+}
+
+.social-links svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
 }
 
 .lightbox .prev {

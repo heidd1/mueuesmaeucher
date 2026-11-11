@@ -1,176 +1,245 @@
+// ===================== Schnee =====================
+// Der Zustand wird sofort gesetzt (nicht erst bei DOMContentLoaded),
+// damit der Schnee beim Laden nicht kurz aufblitzt und dann verschwindet.
+const SNOW_STORAGE_KEY = 'snow';
+
+function readSnowPreference() {
+    try {
+        const saved = localStorage.getItem(SNOW_STORAGE_KEY);
+        if (saved === 'on') return true;
+        if (saved === 'off') return false;
+    } catch (error) {
+        // localStorage kann blockiert sein (z. B. privater Modus) – dann gilt der Standard.
+    }
+    // Ohne gespeicherte Wahl: Systemeinstellung "Bewegung reduzieren" respektieren.
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function applySnow(on) {
+    document.documentElement.classList.toggle('snow-on', on);
+    document.documentElement.classList.toggle('no-snow', !on);
+}
+
+applySnow(readSnowPreference());
+
 document.addEventListener('DOMContentLoaded', () => {
-    initHomepageLightbox();
-    initGalerie();
+    initSnowToggle();
+    const lightbox = createLightbox();
+    initGalleries(lightbox);
+    initGalerieTabs();
     initAktuellesTabs();
     initGonnerDonation();
 });
 
-function initHomepageLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const homepageGallery = document.querySelector('.homepage-gallery');
-
-    if (!lightbox || !lightboxImg || !homepageGallery) {
+function initSnowToggle() {
+    const header = document.querySelector('header');
+    if (!header) {
         return;
     }
 
-    const galleryImages = [...homepageGallery.querySelectorAll('img')];
-    if (!galleryImages.length) {
-        return;
-    }
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'snow-toggle';
+    button.setAttribute('aria-label', 'Schneefall');
+    button.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+        '<line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/>' +
+        '<path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/>' +
+        '<path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>';
 
-    let galleryIndex = 0;
-
-    const openLightbox = (img) => {
-        galleryIndex = galleryImages.indexOf(img);
-        lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
+    const update = (on) => {
+        applySnow(on);
+        button.setAttribute('aria-pressed', String(on));
+        button.title = on ? 'Schnee ausschalten' : 'Schnee einschalten';
     };
 
-    const updateImage = (step) => {
-        galleryIndex = (galleryIndex + step + galleryImages.length) % galleryImages.length;
-        lightboxImg.src = galleryImages[galleryIndex].src;
-    };
+    update(document.documentElement.classList.contains('snow-on'));
 
-    galleryImages.forEach((img) => {
-        img.addEventListener('click', () => openLightbox(img));
+    button.addEventListener('click', () => {
+        const on = button.getAttribute('aria-pressed') !== 'true';
+        update(on);
+        try {
+            localStorage.setItem(SNOW_STORAGE_KEY, on ? 'on' : 'off');
+        } catch (error) {
+            // Speichern nicht möglich – die Wahl gilt dann nur für diese Seite.
+        }
     });
 
+    header.appendChild(button);
+}
+
+// ===================== Lightbox =====================
+function createLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (!lightbox || !lightboxImg) {
+        return null;
+    }
+
+    const closeButton = lightbox.querySelector('.lightbox-close');
     const prevButton = lightbox.querySelector('.prev');
     const nextButton = lightbox.querySelector('.next');
 
-    prevButton?.addEventListener('click', () => updateImage(-1));
-    nextButton?.addEventListener('click', () => updateImage(1));
+    let images = [];
+    let index = 0;
+    let returnFocusTo = null;
+
+    const show = () => {
+        lightboxImg.src = images[index].src;
+        lightboxImg.alt = images[index].alt;
+    };
+
+    const step = (direction) => {
+        index = (index + direction + images.length) % images.length;
+        show();
+    };
+
+    const open = (imageList, startIndex, trigger) => {
+        images = imageList;
+        index = startIndex;
+        returnFocusTo = trigger;
+        show();
+
+        const single = images.length < 2;
+        prevButton.hidden = single;
+        nextButton.hidden = single;
+
+        lightbox.classList.add('open');
+        closeButton.focus();
+    };
+
+    const close = () => {
+        lightbox.classList.remove('open');
+        lightboxImg.removeAttribute('src');
+        returnFocusTo?.focus();
+    };
+
+    // Fokus in der Lightbox halten: Tab springt vom letzten zum ersten Knopf und umgekehrt.
+    const trapFocus = (event) => {
+        const focusable = [...lightbox.querySelectorAll('button:not([hidden])')];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    };
+
+    closeButton.addEventListener('click', close);
+    prevButton.addEventListener('click', () => step(-1));
+    nextButton.addEventListener('click', () => step(1));
 
     lightbox.addEventListener('click', (event) => {
         if (event.target === lightbox) {
-            lightbox.style.display = 'none';
+            close();
         }
     });
+
+    lightbox.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            close();
+        } else if (event.key === 'ArrowLeft' && images.length > 1) {
+            step(-1);
+        } else if (event.key === 'ArrowRight' && images.length > 1) {
+            step(1);
+        } else if (event.key === 'Tab') {
+            trapFocus(event);
+        }
+    });
+
+    return { open };
 }
 
-function initGalerie() {
-    const yearContents = [...document.querySelectorAll('.year-content')];
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    if (!yearContents.length || !lightbox || !lightboxImg) {
+// Jede .gallery (Startseite und alle Anlässe der Galerie) blättert nur durch ihre eigenen Bilder.
+function initGalleries(lightbox) {
+    if (!lightbox) {
         return;
     }
 
-    const state = {
-        currentYear: 1,
-        currentEvent: 0,
-        currentIndex: 0,
-        eventImages: []
-    };
+    document.querySelectorAll('.gallery').forEach((gallery) => {
+        const images = [...gallery.querySelectorAll('img')];
 
-    yearContents.forEach((year, yearIndex) => {
-        state.eventImages[yearIndex] = [...year.querySelectorAll('.event-content')].map((event) =>
-            [...event.querySelectorAll('img')].map((img) => img.src)
-        );
+        images.forEach((img, index) => {
+            // Bilder per Tastatur erreichbar und auslösbar machen.
+            img.tabIndex = 0;
+            img.setAttribute('role', 'button');
+            img.setAttribute('aria-label', `Bild vergrössern: ${img.alt}`);
+
+            const open = () => lightbox.open(images, index, img);
+
+            img.addEventListener('click', open);
+            img.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    open();
+                }
+            });
+        });
     });
+}
 
-    const openYearTab = (yearIndex) => {
-        document.querySelectorAll('.years button').forEach((button) => {
-            button.classList.toggle('active', Number(button.dataset.yearIndex) === yearIndex);
+// ===================== Tabs =====================
+// Markiert einen Knopf optisch (.active) und für Screenreader (aria-pressed).
+function setPressed(button, pressed) {
+    button.classList.toggle('active', pressed);
+    button.setAttribute('aria-pressed', String(pressed));
+}
+
+function initGalerieTabs() {
+    const yearButtons = [...document.querySelectorAll('.years button')];
+    const yearContents = [...document.querySelectorAll('.year-content')];
+
+    if (!yearButtons.length || !yearContents.length) {
+        return;
+    }
+
+    const openEvent = (year, eventIndex) => {
+        year.querySelectorAll('.events button').forEach((button) => {
+            setPressed(button, Number(button.dataset.eventIndex) === eventIndex);
         });
-
-        yearContents.forEach((year, index) => {
-            year.classList.toggle('active', index === yearIndex);
-        });
-
-        state.currentYear = yearIndex;
-        openEventTab(yearIndex, 0);
-    };
-
-    const openEventTab = (yearIndex, eventIndex) => {
-        const year = yearContents[yearIndex];
-        if (!year) {
-            return;
-        }
-
-        state.currentYear = yearIndex;
-        state.currentEvent = eventIndex;
-
-        const buttons = year.querySelectorAll('.events button');
-        buttons.forEach((button, index) => {
-            button.classList.toggle('active', index === eventIndex);
-        });
-
-        const events = year.querySelectorAll('.event-content');
-        events.forEach((event, index) => {
+        year.querySelectorAll('.event-content').forEach((event, index) => {
             event.classList.toggle('active', index === eventIndex);
         });
     };
 
-    const openEventImage = (yearIndex, eventIndex, img) => {
-        const images = state.eventImages[yearIndex]?.[eventIndex] ?? [];
-        state.currentYear = yearIndex;
-        state.currentEvent = eventIndex;
-        state.currentIndex = images.indexOf(img.src);
-        lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
+    const openYear = (yearIndex) => {
+        yearButtons.forEach((button) => {
+            setPressed(button, Number(button.dataset.yearIndex) === yearIndex);
+        });
+        yearContents.forEach((year, index) => {
+            year.classList.toggle('active', index === yearIndex);
+        });
+        openEvent(yearContents[yearIndex], 0);
     };
 
-    const updateImage = (step) => {
-        const images = state.eventImages[state.currentYear]?.[state.currentEvent] ?? [];
-        if (!images.length) {
-            return;
-        }
-
-        state.currentIndex = (state.currentIndex + step + images.length) % images.length;
-        lightboxImg.src = images[state.currentIndex];
-    };
-
-    document.querySelectorAll('.years button').forEach((button) => {
-        button.addEventListener('click', () => openYearTab(Number(button.dataset.yearIndex)));
+    yearButtons.forEach((button) => {
+        button.addEventListener('click', () => openYear(Number(button.dataset.yearIndex)));
     });
 
-    yearContents.forEach((year, yearIndex) => {
-        const eventButtons = year.querySelectorAll('.events button');
-        eventButtons.forEach((button) => {
-            button.addEventListener('click', () => openEventTab(yearIndex, Number(button.dataset.eventIndex)));
-        });
-
-        const eventContents = year.querySelectorAll('.event-content');
-        eventContents.forEach((event, eventIndex) => {
-            const images = event.querySelectorAll('img');
-            images.forEach((img) => {
-                img.addEventListener('click', () => openEventImage(yearIndex, eventIndex, img));
-            });
+    yearContents.forEach((year) => {
+        year.querySelectorAll('.events button').forEach((button) => {
+            button.addEventListener('click', () => openEvent(year, Number(button.dataset.eventIndex)));
         });
     });
 
-    const prevButton = lightbox.querySelector('.prev');
-    const nextButton = lightbox.querySelector('.next');
-
-    prevButton?.addEventListener('click', () => updateImage(-1));
-    nextButton?.addEventListener('click', () => updateImage(1));
-
-    lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) {
-            lightbox.style.display = 'none';
-        }
-    });
-
-    openYearTab(state.currentYear);
-    openEventTab(state.currentYear, state.currentEvent);
+    const initiallyActive = yearButtons.find((button) => button.classList.contains('active')) ?? yearButtons[0];
+    openYear(Number(initiallyActive.dataset.yearIndex));
 }
 
 function initAktuellesTabs() {
-    const buttons = document.querySelectorAll('.tabs button');
-    const contents = document.querySelectorAll('.tab-content');
+    const contents = [...document.querySelectorAll('.tab-content')];
+    const buttons = [...document.querySelectorAll('.tabs button')];
 
     if (!buttons.length || !contents.length) {
         return;
     }
 
     const openTab = (index) => {
-        buttons.forEach((button, buttonIndex) => {
-            button.classList.toggle('active', buttonIndex === index);
-        });
-
+        buttons.forEach((button, buttonIndex) => setPressed(button, buttonIndex === index));
         contents.forEach((content, contentIndex) => {
             content.classList.toggle('active', contentIndex === index);
         });
@@ -179,8 +248,11 @@ function initAktuellesTabs() {
     buttons.forEach((button, index) => {
         button.addEventListener('click', () => openTab(index));
     });
+
+    openTab(Math.max(0, buttons.findIndex((button) => button.classList.contains('active'))));
 }
 
+// ===================== Gönner (TWINT) =====================
 function initGonnerDonation() {
     const container = document.getElementById('rnw-paylink-button-kfpgs');
     if (!container) {
