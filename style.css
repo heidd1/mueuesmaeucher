@@ -50,15 +50,30 @@ header img {
     max-height: 140px;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 8px;
+    margin-top: 10px;
+}
+
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 12px;
     font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+nav a.active {
+    background: #f3f1ec;
+    color: #775420;
 }
 
 .container {
