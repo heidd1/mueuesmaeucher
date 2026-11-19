@@ -1,0 +1,161 @@
+<!-- ===================== weihnachtsmarkt.html =====================
+     Saisonseite. Nach dem Markt in style.css den SAISON-SCHALTER umlegen,
+     dann verschwinden alle Links hierher. Nächstes Jahr: Daten unten anpassen
+     und den Schalter wieder zurücklegen.
+================================================================== -->
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0">
+		<title>Müüsmäucher Winznau – Weihnachtsmarkt 2026</title>
+		<meta
+			name="description"
+			content="Winznauer Weihnachtsmarkt 2026: Samstag, 19. Dezember 2026 ab 11:00 Uhr auf dem Dorfplatz in Winznau. Programm, interaktiver Standplan und Anmeldung für Marktstände.">
+		<meta
+			property="og:title"
+			content="Winznauer Weihnachtsmarkt 2026">
+		<meta
+			property="og:url"
+			content="https://mueuesmaeucher.ch/weihnachtsmarkt.html">
+		<meta
+			property="og:site_name"
+			content="mueuesmaeucher.ch">
+		<meta
+			property="og:description"
+			content="Samstag, 19. Dezember 2026 ab 11:00 Uhr auf dem Dorfplatz in Winznau. Programm, Standplan und Anmeldung.">
+		<meta
+			property="og:type"
+			content="website">
+		<meta
+			property="og:image"
+			content="https://mueuesmaeucher.ch/social_media.png">
+		<meta
+			property="og:image:width"
+			content="1200">
+		<meta
+			property="og:image:height"
+			content="630">
+		<link
+			rel="canonical"
+			href="https://mueuesmaeucher.ch/weihnachtsmarkt.html">
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com">
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com" crossorigin>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+			rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="alternate icon" href="/favicon.png"> <!-- Fallback -->
+	</head>
+	<!-- Die Klasse "seite-weihnachtsmarkt" schaltet in style.css die grünen Akzentfarben nur für diese Seite ein. -->
+	<body class="seite-weihnachtsmarkt">
+		<header>
+			<a href="index.html">
+				<img
+				src="LOGO_Weihnachten.png"
+				alt="Müüsmäucher Winznau – zur Startseite">
+			</a>
+			<h1>Müüsmäucher Winznau</h1>
+			<nav>
+				<a href="index.html">Startseite</a>
+				<a href="weihnachtsmarkt.html" class="saison-weihnachtsmarkt active" aria-current="page">Weihnachtsmarkt</a>
+				<a href="ueber-uns.html">Über uns</a>
+				<a href="aktuelles.html">Aktuelles</a>
+				<a href="goenner.html">Gönnerwesen</a>
+				<a href="galerie.html">Galerie</a>
+				<a href="kontakt.html">Kontakt</a>
+			</nav>
+		</header>
+		<main class="container">
+			<h2>Winznauer Weihnachtsmarkt 2026</h2>
+			<p>Marktstände, Glühwein, Samichlaus und gemütliches Beisammensein: Wir freuen uns auf dich!</p>
+
+			<!-- ===== 1. Auf einen Blick ===== -->
+			<!-- <dl> = "description list": Begriff (dt) + Beschreibung (dd). Passt genau für "Datum: …, Zeit: …". -->
+			<dl class="wm-fakten">
+				<div>
+					<dt>Datum</dt>
+					<dd>Samstag, 19. Dezember 2026</dd>
+				</div>
+				<div>
+					<dt>Zeit</dt>
+					<dd>Stände 11:00 – 20:00 Uhr,<br>danach Festbetrieb</dd>
+				</div>
+				<div>
+					<dt>Ort</dt>
+					<dd>Dorfplatz Winznau</dd>
+				</div>
+			</dl>
+
+			<!-- ===== 2. Programm ===== -->
+			<section>
+				<h3>Programm</h3>
+				<!-- <ol> = geordnete Liste, weil die Reihenfolge (Zeit) wichtig ist. <time> macht die Uhrzeit maschinenlesbar. -->
+				<ol class="wm-programm">
+					<li><time datetime="2026-12-19T11:00">11:00</time> Markt geöffnet</li>
+					<li><time datetime="2026-12-19T13:00">13:00</time> <a href="goenner.html">Gönnerapéro</a> für alle Gönnerinnen und Gönner</li>
+					<li><time datetime="2026-12-19T14:00">14:00</time> Besuch vom Samichlaus (bis 15:00)</li>
+					<li><time datetime="2026-12-19T19:00">19:00</time> Ständli der Musikgesellschaft Winznau</li>
+					<li><time datetime="2026-12-19T20:00">20:00</time> Stände schliessen, das beheizte Zelt bleibt geöffnet</li>
+				</ol>
+			</section>
+
+			<!-- ===== 3. Standplan ===== -->
+			<!-- Der Plan ist eine eigene Datei und wird per <iframe> eingebettet. Die Höhe passt script.js automatisch an. -->
+			<section class="wm-plan">
+				<h3>Standplan</h3>
+				<p>Tippe auf einen Stand, um zu sehen, wer dort ist und was es gibt. Beim Festzelt findest du unser Essen und Trinken.</p>
+				<iframe
+					class="plan-frame"
+					title="Interaktiver Standplan des Weihnachtsmarkts 2026"
+					src="261119_Weihnachtsmarkt_Plan.html"
+					loading="lazy"></iframe>
+				<!-- Öffnet im gleichen Tab, damit der Zurück-Button des Browsers wieder hierher führt. -->
+				<p><a class="wm-button" href="261119_Weihnachtsmarkt_Plan.html">Plan im Vollbild öffnen</a></p>
+			</section>
+
+			<!-- ===== 4. Standanmeldung ===== -->
+			<!-- Wenn die Anmeldung geschlossen ist: diese ganze <section> löschen oder auskommentieren. -->
+			<section>
+				<h3>Stand anmelden</h3>
+				<p>Du möchtest selbst einen Stand betreiben? Melde dich hier an.</p>
+				<iframe
+					class="wm-formular"
+					title="Anmeldeformular für einen Stand am Weihnachtsmarkt 2026"
+					src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAa__dJG7HlUNEgzTDZHNlozNlhBVEJPRkxSMU9IODhRSi4u&embed=true"
+					loading="lazy"
+					allowfullscreen></iframe>
+			</section>
+
+			<!-- ===== 5. Rückblick ===== -->
+			<!-- Weil das ein .gallery-Block ist, öffnet script.js die Bilder automatisch in der Lightbox. -->
+			<section>
+				<h3>Rückblick 2025</h3>
+				<div class="gallery">
+					<img src="bilder/2025_Weihnachtsmarkt/Weihnachtsmarkt (1).jpg" alt="Impression vom Weihnachtsmarkt 2025" loading="lazy">
+					<img src="bilder/2025_Weihnachtsmarkt/Weihnachtsmarkt (6).jpg" alt="Impression vom Weihnachtsmarkt 2025" loading="lazy">
+					<img src="bilder/2025_Weihnachtsmarkt/Weihnachtsmarkt (12).jpg" alt="Impression vom Weihnachtsmarkt 2025" loading="lazy">
+					<img src="bilder/2025_Weihnachtsmarkt/Weihnachtsmarkt (20).jpg" alt="Impression vom Weihnachtsmarkt 2025" loading="lazy">
+					<img src="bilder/2025_Weihnachtsmarkt/Weihnachtsmarkt (30).jpg" alt="Impression vom Weihnachtsmarkt 2025" loading="lazy">
+					<img src="bilder/2025_Weihnachtsmarkt/Weihnachtsmarkt (38).jpg" alt="Impression vom Weihnachtsmarkt 2025" loading="lazy">
+				</div>
+				<p><a href="galerie.html">Alle Bilder in der Galerie ansehen →</a></p>
+			</section>
+		</main>
+		<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+			<button type="button" class="lightbox-close" aria-label="Bildansicht schliessen">&times;</button>
+			<button type="button" class="nav prev" aria-label="Vorheriges Bild">&#10094;</button>
+			<img id="lightbox-img" alt="">
+			<button type="button" class="nav next" aria-label="Nächstes Bild">&#10095;</button>
+		</div>
+		<footer>&copy; 2026 Müüsmäucher Winznau</footer>
+		<script src="script.js"></script>
+	</body>
+</html>

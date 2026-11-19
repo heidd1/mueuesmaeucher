@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGalerieTabs();
     initAktuellesTabs();
     initGonnerDonation();
+    initPlanFrame();
 });
 
 function initSnowToggle() {
@@ -250,6 +251,39 @@ function initAktuellesTabs() {
     });
 
     openTab(Math.max(0, buttons.findIndex((button) => button.classList.contains('active'))));
+}
+
+// ===================== Weihnachtsmarkt: Standplan im iframe =====================
+// Der Plan schickt per postMessage seine Höhe an diese Seite.
+// - Breites iframe (Desktop-Layout des Plans): iframe genau so hoch machen wie der Plan,
+//   damit kein zweiter Scrollbalken entsteht.
+// - Schmales iframe (Handy-Layout): Höhe aus dem CSS lassen (max. 85 % des Bildschirms).
+//   Dort zeigt der Plan die Stand-Infos unten am Rand seines Fensters an. Wäre das
+//   iframe so hoch wie der ganze Plan, läge dieser Rand ausserhalb des Bildschirms.
+function initPlanFrame() {
+    const frame = document.querySelector('.plan-frame');
+    if (!frame) {
+        return;
+    }
+
+    const PLAN_MOBILE_MAX = 860; // gleiche Grenze wie @media (max-width: 860px) im Plan
+    let planHeight = 0;
+
+    const applyHeight = () => {
+        const desktopLayout = frame.clientWidth > PLAN_MOBILE_MAX;
+        frame.style.height = desktopLayout && planHeight ? `${planHeight}px` : '';
+    };
+
+    window.addEventListener('message', (event) => {
+        // Nur Nachrichten von genau diesem iframe und mit dem erwarteten Typ beachten.
+        if (event.source !== frame.contentWindow || event.data?.type !== 'weihnachtsmarkt-plan-height') {
+            return;
+        }
+        planHeight = Number(event.data.height) || 0;
+        applyHeight();
+    });
+
+    window.addEventListener('resize', applyHeight);
 }
 
 // ===================== Gönner (TWINT) =====================

@@ -2,6 +2,18 @@
     box-sizing: border-box;
 }
 
+/* ===================== SAISON-SCHALTER =====================
+   Alles mit der Klasse "saison-weihnachtsmarkt" (Link in der Navigation,
+   Button auf der Startseite) ist nur während der Weihnachtsmarkt-Saison sichtbar.
+
+   Nach dem Markt:  die Zeile mit "display: none" unten aktivieren
+                    (die Kommentarzeichen vorne und hinten entfernen).
+   Nächstes Jahr:   die Zeile wieder auskommentieren.
+   ============================================================ */
+.saison-weihnachtsmarkt {
+    /* display: none !important; */
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -339,4 +351,130 @@ footer {
     display: block;
     margin: 0 auto;
     max-width: 90%;
+}
+
+/* ===================== Weihnachtsmarkt-Seite =====================
+   Die meisten Regeln gelten nur innerhalb von <body class="seite-weihnachtsmarkt">.
+   Die Farben stammen aus dem Standplan, damit Seite und Plan zusammenpassen.
+   Variablen (--name) definiert man einmal und benutzt sie mit var(--name).
+   Sie stehen in :root (= ganze Seite), damit auch der Button auf der Startseite sie kennt. */
+:root {
+    --wm-gruen: #004900;
+    --wm-papier: #f6efd8;
+    --wm-orange: #c8731a;
+}
+
+.seite-weihnachtsmarkt h2,
+.seite-weihnachtsmarkt h3 {
+    color: var(--wm-gruen);
+}
+
+.seite-weihnachtsmarkt section {
+    margin-top: 40px;
+}
+
+/* Auf einen Blick: drei Karten nebeneinander, auf dem Handy untereinander.
+   auto-fit + minmax: so viele Spalten wie Platz haben, jede mindestens 200px breit. */
+.wm-fakten {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 24px 0 0;
+}
+
+.wm-fakten div {
+    background: var(--wm-papier);
+    border-left: 5px solid var(--wm-gruen);
+    border-radius: 6px;
+    padding: 14px 18px;
+}
+
+.wm-fakten dt {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--wm-gruen);
+}
+
+.wm-fakten dd {
+    margin: 4px 0 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Programm als Zeitleiste: eine Linie links (border-left), jeder Punkt ein Kreis (::before). */
+.wm-programm {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 20px;
+    border-left: 3px solid var(--wm-papier);
+}
+
+.wm-programm li {
+    position: relative;
+    padding: 8px 0 8px 12px;
+}
+
+.wm-programm li::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 15px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--wm-orange);
+    border: 2px solid #fff;
+}
+
+.wm-programm time {
+    display: inline-block;
+    min-width: 56px;
+    font-weight: 700;
+    color: var(--wm-gruen);
+}
+
+/* Standplan: Das iframe darf breiter werden als der weisse Inhaltsbereich (max. 1400px),
+   weil der Plan viel Platz braucht. margin-left: 50% + translateX(-50%) zentriert es.
+   Die Höhe ist ein Startwert; auf grossen Bildschirmen setzt script.js die genaue Höhe.
+   Der Startwert muss eher klein sein: Der Plan meldet nie weniger als die aktuelle iframe-Höhe,
+   er kann das iframe also nur wachsen lassen, nicht schrumpfen. */
+.plan-frame {
+    display: block;
+    width: max(100%, min(1400px, 100vw - 32px));
+    height: min(85vh, 600px);
+    margin: 16px 0 12px 50%;
+    transform: translateX(-50%);
+    border: 0;
+    border-radius: 10px;
+    background: #e9ddaf;
+}
+
+.wm-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid var(--wm-gruen);
+    border-radius: 6px;
+    color: var(--wm-gruen);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.wm-button:hover {
+    background: var(--wm-gruen);
+    color: #fff;
+}
+
+.wm-formular {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: 480px;
+    border: 0;
+}
+
+/* Nur Links im Inhalt (main) werden grün, die Navigation im Header bleibt wie sie ist. */
+.seite-weihnachtsmarkt main a:not(.wm-button) {
+    color: var(--wm-gruen);
 }
