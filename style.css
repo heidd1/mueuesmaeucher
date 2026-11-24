@@ -478,3 +478,45 @@ footer {
 .seite-weihnachtsmarkt main a:not(.wm-button) {
     color: var(--wm-gruen);
 }
+
+/* ===================== Über uns: Mitglieder =====================
+   Raster wie bei der Galerie: so viele Spalten wie Platz haben (je mind. 150px).
+   Jede Karte zeigt die Initialen als Platzhalter. Das Foto liegt absolut
+   darüber und deckt sie zu. Fehlt das Foto, entfernt sich das <img> selbst
+   (onerror im HTML) und die Initialen bleiben sichtbar. */
+.mitglieder {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.mitglied {
+    margin: 0;
+    text-align: center;
+}
+
+.mitglied-foto {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    display: grid;
+    place-items: center;
+    background: #f3f1ec;
+    border-radius: 6px;
+    overflow: hidden;
+    color: #775420;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.mitglied-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mitglied figcaption {
+    margin-top: 8px;
+    font-weight: 600;
+}
